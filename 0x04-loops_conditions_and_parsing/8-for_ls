@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# works same as ls
+# works same as ls but removes the number prefix
 
-for item in $(ls);do
-	echo "${item#[0-9-]+}"
+for item in * ;do
+	echo "$item" | cut -d '-' -f 2
 done
