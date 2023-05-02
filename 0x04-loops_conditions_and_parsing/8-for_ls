@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# works same as ls
+
+for item in $(ls);do
+	echo "${item#[0-9-]+}"
+done
