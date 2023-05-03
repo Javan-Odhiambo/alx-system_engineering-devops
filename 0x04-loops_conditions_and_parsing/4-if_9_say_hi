@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#Prints out the line "Best School" 10 times but prints Hi after the 9th
+i=0
+while [[ $i -lt 10 ]]; do
+	echo "Best School"
+	if [[ $i -eq 8 ]]; then
+		echo Hi
+	fi
+	i=$((i+1))
+done
