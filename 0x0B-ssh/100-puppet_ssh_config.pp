@@ -1,3 +1,4 @@
+# Modifies the ssh config to disable passwd auth
 include stdlib
 
 file_line { 'Disable password authentication':
