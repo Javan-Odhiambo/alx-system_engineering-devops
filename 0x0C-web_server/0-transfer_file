@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#copies a file from your local machine to a host machine
 
 if [ $# -lt 3 ];
 then
