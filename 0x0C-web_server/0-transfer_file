@@ -10,11 +10,10 @@ fi
 local_file="$1"
 host="$2"
 username="$3"
-remote_path="/home/ubuntu"
 
 if [ -z "$4" ];
 then
-    scp -o StrictHostKeyChecking=no "$local_file" "$username@$host:$remote_path"
+    scp -o StrictHostKeyChecking=no "$local_file" "$username@$host":~/
 else
-	scp -i "$4" -o StrictHostKeyChecking=no "$local_file" "$username@$host:$remote_path"
+	scp -i "$4" -o StrictHostKeyChecking=no "$local_file" "$username@$host":~/
 fi
