@@ -47,7 +47,7 @@ backend javanotieno_backend
     balance roundrobin
     server 200955-web-01 3.84.168.4:80 check
     server 200955-web-02 54.234.61.211:80 check
-EOF"
+"
 
 # shellcheck disable=SC2154
 echo "$server_config" | sudo dd status=none of=/etc/haproxy/haproxy.cfg
