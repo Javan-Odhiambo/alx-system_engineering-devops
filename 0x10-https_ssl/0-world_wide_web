@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Displays information about subdomains.
+
+function audit_subdomain {
+    local domain=$1
+    local subdomain=$2
+	# shellcheck disable=SC2155
+    local record_type="$(dig $subdomain.$domain | grep -A1 'ANSWER' | tail -n 1 | awk '{print $4}')"
+	# shellcheck disable=SC2155
+    local destination="$(dig +short $subdomain.$domain | awk '{print $1}')"
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+}
+
+function audit_domain {
+    local domain=$1
+    audit_subdomain $domain "www"
+    audit_subdomain $domain "lb-01"
+    audit_subdomain $domain "web-01"
+    audit_subdomain $domain "web-02"
+}
+
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 domain [subdomain]"
+    exit 1
+fi
+
+domain=$1
+subdomain=$2
+
+if [ -z "$subdomain" ]; then
+    audit_domain $domain
+else
+    audit_subdomain $domain $subdomain
+fi
