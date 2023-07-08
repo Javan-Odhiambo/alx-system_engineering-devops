@@ -1,0 +1,24 @@
+global
+  maxconn 2048
+  tune.ssl.default-dh-param 2048
+
+defaults
+  mode http
+  timeout client 15s
+  timeout connect 10s
+  timeout server 15s
+  timeout http-request 10s
+  option forwardfor
+  option http-server-close
+
+frontend javanotieno_frontend
+    bind *:80
+    bind *:443 ssl crt /etc/haproxy/certs/www.javanotieno.tech.pem
+    http-request redirect scheme https code 301 unless { ssl_fc }
+    default_backend javanotieno_backend
+
+backend javanotieno_backend
+    balance roundrobin
+    server 200955-web-01 3.84.168.4:80 check
+    server 200955-web-02 54.234.61.211:80 check
+
