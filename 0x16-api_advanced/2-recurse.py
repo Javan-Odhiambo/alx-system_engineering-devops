@@ -19,7 +19,11 @@ def recurse(subreddit, hot_list=[], after=25) -> list:
         'User-Agent': 'My User Agent 1.0',
     }
     url = f"https://www.reddit.com/r/{subreddit}/hot/.json?after={after}"
-    response = requests.get(url=url, headers=headers, allow_redirects=False)
+    response = requests.get(
+                url=url, 
+                headers=headers, 
+                allow_redirects=False
+            )
     if response.json().get("error", 200) == 404:
         return None
 
