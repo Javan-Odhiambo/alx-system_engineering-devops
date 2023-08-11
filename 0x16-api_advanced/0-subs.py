@@ -11,17 +11,17 @@ def number_of_subscribers(subreddit: str) -> int:
         Returns:
             The number of subscribers or 0 if the subreddit doesn't exist.
     """
-    headers: dict = {
+    header = {
         'User-Agent': 'My User Agent 1.0',
     }
-    url: str = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
     try:
         response = requests.get(
                     url=url,
                     headers=headers,
                     allow_redirects=False
                 )
-        data: dict = json.loads(response.text)
+        dat = json.loads(response.text)
         return data["data"]["subscribers"]
     except Exception:
         return 0

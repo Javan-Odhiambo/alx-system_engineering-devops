@@ -12,9 +12,9 @@ def top_ten(subreddit) -> None:
         Returns:
             None
     """
-    limit: int = 10
-    url: str = f"https://www.reddit.com/r/{subreddit}/hot/.json?limit={limit}"
-    headers: dict = {
+    limit = 10
+    url = f"https://www.reddit.com/r/{subreddit}/hot/.json?limit={limit}"
+    headers = {
         'User-Agent': 'My User Agent 1.0',
     }
     try:
@@ -23,7 +23,7 @@ def top_ten(subreddit) -> None:
                     headers=headers,
                     allow_redirects=False
                 )
-        data: dict = json.loads(response.text)["data"]["children"]
+        data = json.loads(response.text)["data"]["children"]
         for obj in data:
             print(obj["data"]["title"])
     except Exception:

@@ -15,10 +15,10 @@ def recurse(subreddit, hot_list=[], after=25) -> list:
         Returns:
             None
     """
-    headers: dict = {
+    headers = {
         'User-Agent': 'My User Agent 1.0',
     }
-    url: str = f"https://www.reddit.com/r/{subreddit}/hot/.json?after={after}"
+    url = f"https://www.reddit.com/r/{subreddit}/hot/.json?after={after}"
     response = requests.get(url=url, headers=headers, allow_redirects=False)
     if response.json().get("error", 200) == 404:
         return None
@@ -26,8 +26,8 @@ def recurse(subreddit, hot_list=[], after=25) -> list:
     if not after:
         return hot_list
 
-    data: dict = json.loads(response.text)["data"]["children"]
-    after: str = json.loads(response.text)["data"]["after"]
+    data = json.loads(response.text)["data"]["children"]
+    after = json.loads(response.text)["data"]["after"]
     for obj in data:
         hot_list.append(obj.get("title"))
     return recurse(subreddit, hot_list, after)
