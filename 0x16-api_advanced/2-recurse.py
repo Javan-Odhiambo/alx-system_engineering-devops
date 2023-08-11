@@ -3,8 +3,8 @@
 returns a list containing the titles of all hot articles for a given subreddit.
 """
 
-import requests
 import json
+import requests
 
 
 def recurse(subreddit, hot_list=[], after=25) -> list:
